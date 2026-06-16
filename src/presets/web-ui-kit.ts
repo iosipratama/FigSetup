@@ -65,12 +65,12 @@ export const webUiKit: Preset = {
     { name: 'color/base/black', value: '#000000', description: 'Pure black' },
   ],
   typeStyles: [
-    // Display — Inter Regular
-    { name: 'Display/2XL', fontFamily: 'Inter', fontStyle: 'Regular', fontSize: 72, lineHeight: 90 },
-    { name: 'Display/XL',  fontFamily: 'Inter', fontStyle: 'Regular', fontSize: 60, lineHeight: 72 },
-    { name: 'Display/LG',  fontFamily: 'Inter', fontStyle: 'Regular', fontSize: 48, lineHeight: 60 },
-    { name: 'Display/MD',  fontFamily: 'Inter', fontStyle: 'Regular', fontSize: 36, lineHeight: 44 },
-    { name: 'Display/SM',  fontFamily: 'Inter', fontStyle: 'Regular', fontSize: 30, lineHeight: 38 },
+    // Display — Inter Display Regular
+    { name: 'Display/2XL', fontFamily: 'Inter Display', fontStyle: 'Regular', fontSize: 72, lineHeight: 90 },
+    { name: 'Display/XL',  fontFamily: 'Inter Display', fontStyle: 'Regular', fontSize: 60, lineHeight: 72 },
+    { name: 'Display/LG',  fontFamily: 'Inter Display', fontStyle: 'Regular', fontSize: 48, lineHeight: 60 },
+    { name: 'Display/MD',  fontFamily: 'Inter Display', fontStyle: 'Regular', fontSize: 36, lineHeight: 44 },
+    { name: 'Display/SM',  fontFamily: 'Inter Display', fontStyle: 'Regular', fontSize: 30, lineHeight: 38 },
     // Heading — Inter Bold
     { name: 'Heading/H1', fontFamily: 'Inter', fontStyle: 'Bold', fontSize: 30, lineHeight: 38 },
     { name: 'Heading/H2', fontFamily: 'Inter', fontStyle: 'Bold', fontSize: 24, lineHeight: 32 },
@@ -87,7 +87,9 @@ export const webUiKit: Preset = {
     { name: 'Label/LG', fontFamily: 'Inter', fontStyle: 'Medium', fontSize: 14, lineHeight: 20 },
     { name: 'Label/MD', fontFamily: 'Inter', fontStyle: 'Medium', fontSize: 12, lineHeight: 16 },
     { name: 'Label/SM', fontFamily: 'Inter', fontStyle: 'Medium', fontSize: 11, lineHeight: 16 },
+    // Overline
+    { name: 'Overline/Default', fontFamily: 'Inter', fontStyle: 'Medium', fontSize: 12, lineHeight: 16, letterSpacing: 8 },
     // Caption
-    { name: 'Caption', fontFamily: 'Inter', fontStyle: 'Regular', fontSize: 12, lineHeight: 16 },
+    { name: 'Caption/Default', fontFamily: 'Inter', fontStyle: 'Regular', fontSize: 12, lineHeight: 16 },
   ],
 };

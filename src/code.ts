@@ -52,8 +52,10 @@ function setupPages(pageNames: string[]) {
     page.name = name;
     return page;
   });
-  for (const page of originals) page.remove();
+  // Switch to a new page before removing originals — Figma won't allow
+  // removing the currently active page.
   figma.currentPage = created[0];
+  for (const page of originals) page.remove();
 }
 
 function setupColors(collectionName: string, tokens: ColorToken[]) {

@@ -161,11 +161,13 @@
   .status.success { color: #14AE5C; }
   .status.error   { color: #F24822; }
 
+  .footer-actions {
+    display: flex;
+    gap: 8px;
+  }
+
   .btn {
-    width: 100%;
     height: 32px;
-    background: #0d99ff;
-    color: #fff;
     border: none;
     border-radius: 6px;
     font-size: 13px;
@@ -175,11 +177,27 @@
     transition: background 0.1s;
   }
 
-  .btn:hover:not(:disabled) { background: #0b8ae6; }
-  .btn:active:not(:disabled) { background: #0a7acc; }
+  .btn-primary {
+    flex: 1;
+    background: #0d99ff;
+    color: #fff;
+  }
+
+  .btn-primary:hover:not(:disabled) { background: #0b8ae6; }
+  .btn-primary:active:not(:disabled) { background: #0a7acc; }
+
+  .btn-danger {
+    padding: 0 14px;
+    background: #fff2f0;
+    color: #F24822;
+    border: 1.5px solid #ffd5cc;
+  }
+
+  .btn-danger:hover:not(:disabled) { background: #ffe5e0; }
+  .btn-danger:active:not(:disabled) { background: #ffd5cc; }
 
   .btn:disabled {
-    background: #d0d0d0;
+    opacity: 0.45;
     cursor: not-allowed;
   }
 
@@ -204,12 +222,16 @@
 
 <div class="footer">
   <div class="status" id="status"></div>
-  <button class="btn" id="apply-btn" disabled>Apply Preset</button>
+  <div class="footer-actions">
+    <button class="btn btn-danger" id="reset-btn">Reset</button>
+    <button class="btn btn-primary" id="apply-btn" disabled>Apply Preset</button>
+  </div>
 </div>
 
 <script>
   let selectedId = null;
   const applyBtn = document.getElementById('apply-btn');
+  const resetBtn = document.getElementById('reset-btn');
   const statusEl = document.getElementById('status');
   const contentEl = document.getElementById('content');
 
@@ -254,8 +276,16 @@
   applyBtn.addEventListener('click', () => {
     if (!selectedId) return;
     applyBtn.disabled = true;
+    resetBtn.disabled = true;
     setStatus('Applying…', 'info');
     parent.postMessage({ pluginMessage: { type: 'apply-preset', presetId: selectedId } }, '*');
+  });
+
+  resetBtn.addEventListener('click', () => {
+    applyBtn.disabled = true;
+    resetBtn.disabled = true;
+    setStatus('Clearing…', 'info');
+    parent.postMessage({ pluginMessage: { type: 'reset' } }, '*');
   });
 
   window.onmessage = (event) => {
@@ -268,10 +298,12 @@
       setStatus(msg.message, 'info');
     } else if (msg.type === 'done') {
       setStatus(msg.message, 'success');
-      applyBtn.disabled = false;
+      applyBtn.disabled = !selectedId;
+      resetBtn.disabled = false;
     } else if (msg.type === 'error') {
       setStatus('Error: ' + msg.message, 'error');
-      applyBtn.disabled = false;
+      applyBtn.disabled = !selectedId;
+      resetBtn.disabled = false;
     }
   };
 

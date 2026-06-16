@@ -36,6 +36,17 @@ figma.ui.onmessage = async (msg: { type: string; presetId?: string }) => {
     return;
   }
 
+  if (msg.type === 'reset') {
+    try {
+      for (const c of figma.variables.getLocalVariableCollections()) c.remove();
+      for (const s of figma.getLocalTextStyles()) s.remove();
+      send('done', 'Styles and variables cleared.');
+    } catch (err) {
+      send('error', String(err));
+    }
+    return;
+  }
+
   if (msg.type === 'close') {
     figma.closePlugin();
   }

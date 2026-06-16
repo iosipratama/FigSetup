@@ -4,7 +4,7 @@ export const webUiKit: Preset = {
   id: 'web-ui-kit',
   label: 'Web UI Kit',
   description: 'Standard setup for web design systems and UI component libraries.',
-  pages: ['Cover', 'Components', 'Typography', 'Colors', 'Icons', 'Templates'],
+  pages: ['Design', 'Style Guide', 'Components', 'File Settings'],
   colorCollectionName: 'Colors',
   colors: [
     // Primary (Indigo)
